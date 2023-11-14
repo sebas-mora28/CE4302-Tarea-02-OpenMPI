@@ -94,8 +94,8 @@ int main(int argc, char **argv)
         MPI_Recv(&chunk_size, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         float chunk_array1[chunk_size];
         float chunk_array2[chunk_size];
-        MPI_Recv(&chunk_array1, chunk_size, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Recv(&chunk_array2, chunk_size, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Recv(&chunk_array1, chunk_size, MPI_FLOAT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Recv(&chunk_array2, chunk_size, MPI_FLOAT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
         printf("Node %d is processing %d elements\n", world_rank, chunk_size);
 
