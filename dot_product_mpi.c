@@ -61,6 +61,7 @@ int main(int argc, char **argv)
         MPI_Send(&array2[index], element_left, MPI_FLOAT, i, 0, MPI_COMM_WORLD);
 
 
+        printf("Central node is processing %d elements", chunk_size)
         // Nodo central comienza a realizar su parte del procesamiento
         float res = 0;
         for (int i = 0; i < chunk_size; i++)
@@ -96,7 +97,7 @@ int main(int argc, char **argv)
         MPI_Recv(&chunk_array1, chunk_size, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         MPI_Recv(&chunk_array2, chunk_size, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-        printf("node %d processing %d elements\n", world_rank, chunk_size);
+        printf("node %d is processing %d elements\n", world_rank, chunk_size);
 
         /*
         * Lleva a cabo la operacion producto punto al trozo del array  
