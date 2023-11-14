@@ -74,7 +74,7 @@ int main(int argc, char **argv)
         for (int i = 1; i < world_size; i++)
         {
             MPI_Recv(&partial_res, 1, MPI_FLOAT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            printf("Receiving partial result from node %d: %d\n", i, partial_res);
+            printf("Receiving partial result from node %d: %3.15f\n", i, partial_res);
             res += partial_res;
         }
         MPI_Barrier(MPI_COMM_WORLD);
@@ -101,14 +101,14 @@ int main(int argc, char **argv)
         /*
         * Lleva a cabo la operacion producto punto al trozo del array  
         */
-        int partial_res = 0;
+        float partial_res = 0;
         for (int i = 0; i < chunk_size; i++)
         {
             partial_res += chunk_array1[i] * chunk_array2[i];
         }
 
         // Envia el resultado parcial al nodo central
-        MPI_Send(&partial_res, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+        MPI_Send(&partial_res, 1, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
         MPI_Barrier(MPI_COMM_WORLD);
     }
 
