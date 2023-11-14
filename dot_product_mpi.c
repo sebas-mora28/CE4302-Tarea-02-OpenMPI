@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
 
         // Nodo central comienza a realizar su parte del procesamiento
-        int res = 0;
+        float res = 0;
         for (int i = 0; i < chunk_size; i++)
         {
             res += array1[i] * array2[i];
@@ -70,10 +70,10 @@ int main(int argc, char **argv)
 
 
         // Se recibe los resultados parciales de los nodos y se suman al resultado final
-        int partial_res;
+        float partial_res;
         for (int i = 1; i < world_size; i++)
         {
-            MPI_Recv(&partial_res, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(&partial_res, 1, MPI_FLOAT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             printf("Receiving partial result from node %d: %d\n", i, partial_res);
             res += partial_res;
         }
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
         
         end = clock();
         float time = (float)(end - start) / CLOCKS_PER_SEC;
-        printf("result : %d, time elapsed %3.15f\n", res, time);
+        printf("result : %3.15f, time elapsed %3.15f\n", res, time);
     }
     else
     {

@@ -23,12 +23,12 @@ int main(int argc, char **argv)
     fill_array(array1, n);
     fill_array(array2, n);
 
-    int result = 0;
+    float result = 0.0;
     start = clock();
     for (int i = 0; i < n; i++)
     {
         result += array1[i] * array2[i];
     }
     end = clock();
-    printf("Result: %d, time elapsed: %3.15f\n", result, (float)(end - start) / CLOCKS_PER_SEC);
+    printf("Result: %3.15f, time elapsed: %3.15f\n", result, (float)(end - start) / CLOCKS_PER_SEC);
 }
