@@ -12,8 +12,7 @@ dot_product_mpi:
 	@mkdir -p $(BINDIR)
 	$(MPICC) $(CFLAGS) -o $(BINDIR)/dot_product_mpi dot_product_mpi.c
 	@$(RM) -r dot_product_mpi.o	
-	mpirun -np 4 ./$(BINDIR)/dot_product_mpi $(ARGS)
-
+	mpirun -np 3 --hostfile hosts ./$(BINDIR)/dot_product_mpi $(ARGS)
 
 dot_product: 
 	@mkdir -p $(BINDIR)
